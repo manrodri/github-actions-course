@@ -62,7 +62,7 @@ jobs:
         run: |
 
           sed -i.bak 's/GITHUB_ACTOR/${{github.actor }}/' .github/script/data.json
-          sed -i.bak 's/BRANCH/$BRANCH/' .github/script/data.json
+          sed -i.bak 's/BRANCH/update-game/' .github/script/data.json
 
           cat .github/script/data.json
 
