@@ -10,14 +10,11 @@ on:
 jobs:
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
   step-0:
-    env:
-      BRANCH: update-game
+    
       
-
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      contents: write
      
 
     steps:  
@@ -59,18 +56,15 @@ jobs:
         
 
       - name: Create a PR 
+        env:
+          BRANCH: update-game
         run: |
 
-          cat <<EOT >> data.txt
-          {
-          "title":"Amazing new feature",
-          "body":"Please pull these awesome changes in!",
-          "head":"${{ github.actor }}:$BRANCH",
-          "base":"main"
-          }
-          EOT 
+          sed -i.bak 's/GITHUB_ACTOR/${{github.actor }}/' .github/script/data.json
+          sed -i.bak 's/BRANCH/$BRANCH/' .github/script/data.json
 
-          
+          cat .github/script/data.json
+
           curl \
           -X POST \
           -H "Accept: application/vnd.github+json" \
