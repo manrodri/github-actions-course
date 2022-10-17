@@ -16,14 +16,18 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      issues: write 
       pull-requests: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # Let's get all the branches
-      
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      issues: write
+      packages: write
+      repository-projects: write
+      security-events: write
+      statuses: write 
+
+    steps:  
       - name: Prepare a branch
         run: |
           echo "Make sure we are on step 0"
@@ -34,6 +38,7 @@ jobs:
           fi
 
           echo "Make a branch"
+          BRANCH=update-game
           git checkout -b $BRANCH
 
           echo "Update index.html"
@@ -48,6 +53,11 @@ jobs:
           echo "Push"
           git push --set-upstream origin $BRANCH
 
+          
+          echo "Restore main"
+          git checkout main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
 
       - name: Create a PR 
