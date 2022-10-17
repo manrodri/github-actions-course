@@ -17,15 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      actions: write
-      checks: write
-      contents: write
-      deployments: write
-      issues: write
-      packages: write
-      repository-projects: write
-      security-events: write
-      statuses: write 
+     
 
     steps:  
       - name: Checkout
@@ -67,10 +59,21 @@ jobs:
 
       - name: Create a PR 
         run: |
+
+          cat <<EOT >> data.txt
+          {
+          "title":"Amazing new feature",
+          "body":"Please pull these awesome changes in!",
+          "head":"${{ github.actor }}:$BRANCH",
+          "base":"main"
+          }
+          EOT 
+
+          
           curl \
           -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ github.repository }}/pulls \
-          -d '{"title":"Amazing new feature","body":"Please pull these awesome changes in!","head":"manrodri:update-game","base":"main"}'
+          -d @data.txt
             
