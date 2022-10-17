@@ -28,6 +28,11 @@ jobs:
       statuses: write 
 
     steps:  
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Let's get all the branches
+          
       - name: Prepare a branch
         run: |
           echo "Make sure we are on step 0"
