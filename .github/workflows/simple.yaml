@@ -10,14 +10,18 @@ on:
 
 jobs:
   matrix:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+         os: [windows-latest, ubuntu-latest]
+         node_version: [6,8,10,12,14,16]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Log node version
         run: node -v  
       - name: update node version
         uses: actions/setup-node@v1
         with:
-          node-version: 6
+          node-version: ${{ matrix.node_version }}
       - name: Log node version
         run: |
           node -v
