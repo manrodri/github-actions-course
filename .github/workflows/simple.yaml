@@ -1,6 +1,6 @@
 name: Actions Workflow
 on: 
-  push:
+  push: foo-bar
   pull_request:
     types: 
       - closed

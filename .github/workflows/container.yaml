@@ -1,0 +1,22 @@
+name: Play with Containers
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  hello-world-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:latest
+      env: 
+        - foo: bar
+
+    steps:
+      - name: Log node version
+        run: |
+          node -v
+          cat /etc/os-release
