@@ -9,6 +9,19 @@ on:
       - reopened
 
 jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log node version
+        run: node -v  
+      - name: update node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: 6
+      - name: Log node version
+        run: |
+          node -v
+          
   run-github-actions: 
     runs-on: ubuntu-latest
     steps:
