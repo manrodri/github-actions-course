@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: node:latest
-      env: 
-        - foo: bar
 
     steps:
       - name: Log node version
