@@ -1,21 +1,19 @@
 name: Actions Workflow
-on: 
-  workflow_dispatch:
-    inputs:
-      simple:
-        description: run just one job
-        type: choice
-        options:
-          - true
-          - false
-          
-  push: foo-bar
-  pull_request:
-    types: 
-      - closed
-      - assigned
-      - opened
-      - reopened
+on:
+    workflow_dispatch:
+        inputs:
+            simple:
+                description: foobar
+                default: 'workflow_dispatch'
+                type: choice
+                options:
+                    - true
+                    - false
+    push:
+        branches:
+            - master
+            - releases/*
+            - feature/*
 
 jobs:
   matrix:
