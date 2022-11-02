@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: ls and id
         run: |
-          ls
+          ls -al
           id
           whoami
   
