@@ -1,5 +1,14 @@
 name: Actions Workflow
 on: 
+  workflow_dispatch:
+    inputs:
+      simple:
+        description: run just one job
+        type: choice
+        options:
+          - true
+          - false
+          
   push: foo-bar
   pull_request:
     types: 
@@ -10,6 +19,7 @@ on:
 
 jobs:
   matrix:
+    if: ${{ inputs.simple == 'false' }}
     strategy:
       matrix:
          os: [windows-latest, ubuntu-latest]
@@ -24,16 +34,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Log node version
+        if: ${{ inputs.simple == 'false' }}
         run: node -v  
       - name: update node version
+        if: ${{ inputs.simple == 'false' }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node_version }}
       - name: Log node version
+        if: ${{ inputs.simple == 'false' }}
         run: |
           node -v
           
+  simple:
+    if: ${{ inputs.simple == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ls and id
+        run: |
+          ls
+          id
+          whoami
+  
   run-github-actions: 
+    if: ${{ inputs.simple == 'false' }}
     runs-on: ubuntu-latest
     steps:
       
@@ -55,4 +79,5 @@ jobs:
           who-to-greet: Manuel
       - name: Log greeting time
         run: echo "${{ steps.greet.outputs.time }}"
+    
       
