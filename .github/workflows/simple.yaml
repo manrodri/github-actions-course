@@ -28,7 +28,7 @@ jobs:
 
       - name: Simple JS action
         id: greet
-        uses: actions/hello-world-javascript-action@v1.1
+        uses: actions/hello-world-javascript-action@187f3b905d51b8dd4ae7ab55b342c1c8d8646fa2
         with:
           who-to-greet: Manuel
       - name: Log greeting time
