@@ -26,11 +26,11 @@ jobs:
           echo $GITHUB_WORKSPACE
           echo $GITHUB_JOB
 
-      - name: Simple JS action
-        id: greet
-        uses: actions/hello-world-javascript-action@187f3b905d51b8dd4ae7ab55b342c1c8d8646fa2
-        with:
-          who-to-greet: Manuel
+      # - name: Simple JS action
+      #   id: greet
+      #   uses: actions/hello-world-javascript-action@187f3b905d51b8dd4ae7ab55b342c1c8d8646fa2
+      #   with:
+      #     who-to-greet: Manuel
       - name: Log greeting time
         run: echo "${{ steps.greet.outputs.time }}"
       
