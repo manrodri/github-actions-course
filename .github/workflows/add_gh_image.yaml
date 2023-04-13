@@ -1,0 +1,27 @@
+name: Actions Workflow
+on: 
+  push: foo-bar
+  pull_request:
+    types: 
+      - closed
+      - assigned
+      - opened
+      - reopened
+
+jobs:
+  matrix:
+    strategy:
+      matrix:
+         os: [ubuntu-latest]
+         node_version: [6,8,10,]
+         exclude:
+          
+           - os: ubuntu-latest
+             node_version: 16
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Log node version
+        run: node -v  
+      
+  
+  

@@ -1,17 +1,61 @@
 name: Actions Workflow
-on: 
-  push:
-    branches:
-      - master
-  pull_request:
-    types: 
-      - closed
-      - assigned
-      - opened
-      - reopened
 
+on:
+    workflow_dispatch:
+        inputs:
+            simple:
+                description: foobar
+                default: 'workflow_dispatch'
+                type: choice
+                options:
+                    - true
+                    - false
+    push:
+        branches:
+            
+            - releases/*
+            - feature/*
 jobs:
+  matrix:
+    if: ${{ inputs.simple == 'false' }}
+    strategy:
+      matrix:
+         os: [windows-latest, ubuntu-latest]
+         node_version: [6,8,10,12,14,16]
+         exclude:
+           - os: windows-latest
+             node_version: 10
+           - os: windows-latest
+             node_version: 14
+           - os: ubuntu-latest
+             node_version: 16
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Log node version
+        if: ${{ inputs.simple == 'false' }}
+        run: node -v  
+      - name: update node version
+        if: ${{ inputs.simple == 'false' }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Log node version
+        if: ${{ inputs.simple == 'false' }}
+        run: |
+          node -v
+          
+  simple:
+    if: ${{ inputs.simple == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ls and id
+        run: |
+          ls -al
+          id
+          whoami
+  
   run-github-actions: 
+    if: ${{ inputs.simple == 'false' }}
     runs-on: ubuntu-latest
     steps:
       
@@ -33,4 +77,5 @@ jobs:
       #     who-to-greet: Manuel
       - name: Log greeting time
         run: echo "${{ steps.greet.outputs.time }}"
+    
       

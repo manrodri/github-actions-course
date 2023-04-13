@@ -1,0 +1,25 @@
+name: Play with Containers
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  hello-world-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:16-bullseye-slim
+
+    steps:
+      - name: Log node version
+        run: |
+          node -v
+          cat /etc/os-release
+      - name: Step with docker container
+        uses: docker://node:19.0-slim
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -v
