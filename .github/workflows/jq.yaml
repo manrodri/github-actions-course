@@ -36,3 +36,5 @@ jobs:
           version: 'tags/v0.1.18'
           file: 'plague-linux.zip'
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: run ls
+        run: ls
