@@ -20,13 +20,19 @@ jobs:
   example:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Setup jq'
-        uses: dcarbone/install-jq-action@v1.0.1
-        with:
-          version: '${{ inputs.version }}'
-          force: '${{ inputs.force }}'
+      # - name: 'Setup jq'
+      #   uses: dcarbone/install-jq-action@v1.0.1
+      #   with:
+      #     version: '${{ inputs.version }}'
+      #     force: '${{ inputs.force }}'
 
-      - name: 'Check jq'
-        run: |
-          which jq
-          jq --version
+      # - name: 'Check jq'
+      #   run: |
+      #     which jq
+      #     jq --version
+      - uses: dsaltares/fetch-gh-release-asset@1.1.0
+        with:
+          repo: 'dsaltares/godot-wild-jam-18'
+          version: 'tags/v0.1.18'
+          file: 'plague-linux.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
