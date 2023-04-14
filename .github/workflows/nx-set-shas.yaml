@@ -2,9 +2,10 @@
 name: nx-set-shas
 
 on:
-  push:
-    branches: 
-      - dev
+    push:
+        branches:
+            
+            - dev
 
 jobs:
   myjob:
