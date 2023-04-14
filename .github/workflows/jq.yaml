@@ -3,7 +3,7 @@ name: "Setup jq Example - Linux"
 on:
   push:
     branches:
-      - dev
+      - foo
     # inputs:
     #   version:
     #     type: string
