@@ -22,7 +22,7 @@ jobs:
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
       - name: Add reactions
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: 1508380280
           reactions: |
