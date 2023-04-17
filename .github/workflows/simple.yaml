@@ -36,7 +36,7 @@ jobs:
         run: node -v  
       - name: update node version
         if: ${{ inputs.simple == 'false' }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
       - name: Log node version
