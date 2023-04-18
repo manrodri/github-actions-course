@@ -18,7 +18,9 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Add a label for all production dependencies
         
-        run: gh pr edit "$PR_URL" --add-label "dependabot_pull_request"
+        run: |
+          env 
+          gh pr edit "$PR_URL" --add-label "dependabot_pull_request"
         env:
           GH_TOKEN: ${{ github.GITHUB_TOKEN }}
           PR_URL: ${{github.event.pull_request.html_url}}
