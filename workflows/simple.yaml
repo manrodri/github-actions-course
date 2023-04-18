@@ -1,0 +1,17 @@
+name: test dependabot dependency version updates
+
+on:
+    push:
+        branches:
+            
+            - releases/*
+            - feature/*
+jobs:
+          
+  simple:
+    runs-on: ubuntu-latest
+    uses: actions/hello-world-javascript-action@v.1
+    with:
+      who-to-greet: 'Mona the Octocat'
+    
+      
