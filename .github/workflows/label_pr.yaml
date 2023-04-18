@@ -35,6 +35,10 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+      - name: Dump secrets context
+        env: 
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
+        run: echo "$SECRETS_CONTEXT"
 
       - name: Show default environment variables
         run: |
@@ -43,6 +47,7 @@ jobs:
           echo "The run id is: $GITHUB_RUN_ID"
           echo "The GitHub Actor's username is: $GITHUB_ACTOR"
           echo "GitHub SHA: $GITHUB_SHA"
+          echo 
         
       - name: Dependabot metadata
         id: metadata
@@ -55,5 +60,5 @@ jobs:
           env 
           gh pr edit "$PR_URL" --add-label "dependabot_pull_request"
         env:
-          GH_TOKEN: ${{ github.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{github.event.pull_request.html_url}}
