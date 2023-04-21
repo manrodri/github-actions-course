@@ -29,11 +29,15 @@ jobs:
             echo "ACTION_NAMES=${{ steps.metadata.outputs.dependency-names }}" >> $GITHUB_ENV
             echo "PREVIOUS_VERSION=${{ steps.metadata.outputs.previous-version }}" >> $GITHUB_ENV
             echo "NEW_VERION=${{ steps.metadata.outputs.new-version }}" >> $GITHUB_ENV
+            
       
       - uses: actions/checkout@v3
       - name: check envs
         run: |
            echo "GITHUB_ENV: $GITHUB_ENV"
+           echo "ACTION_NAMES: ${{env.ACTION_NAMES}}"
+           echo "NEW_VERSION: $NEW_VERSION"
+
       - name: run update_action.py 
         run: |
           python src/update-action.py
