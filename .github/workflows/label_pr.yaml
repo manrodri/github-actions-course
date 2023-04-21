@@ -21,9 +21,9 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: print out pr data
         run: |
-            echo "dependencies-names: ${{ steps.dependabot-metadata.outputs.dependency-names }}"
-            echo "previous-versions: ${{ steps.dependabot-metadata.outputs.previous-version }}"
-            echo "new-versions: ${{ steps.dependabot-metadata.outputs.new-version }} "
+            echo "dependencies-names: ${{ steps.metadata.outputs.dependency-names }}"
+            echo "previous-versions: ${{ steps.metadata.outputs.previous-version }}"
+            echo "new-versions: ${{ steps.metadata.outputs.new-version }} "
           
       - name: Add a label for all production dependencies
         run: |
