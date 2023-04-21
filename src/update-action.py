@@ -3,7 +3,7 @@ import os
 
 def main():
     # load json into python object
-    with open('./actions.json', "r") as file:
+    with open('./src/actions.json', "r") as file:
         
         data = json.load(file)
         actions = data['actions']
