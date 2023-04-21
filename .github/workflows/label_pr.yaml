@@ -9,7 +9,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    
     steps:
       - name: Dump GitHub context
         env:
@@ -50,12 +50,13 @@ jobs:
           echo 
         
       - name: Dependabot metadata
+        if: ${{ github.actor == 'dependabot[bot]' }}
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          
       - name: Add a label for all production dependencies
-        
         run: |
           env 
           gh pr edit "$PR_URL" --add-label "dependabot_pull_request"
