@@ -1,0 +1,15 @@
+name: update aws actions
+
+on:
+  push:
+    
+    branches:
+      - foo
+    
+jobs:
+  update_aws_actions:
+     runs-on: ubuntu-latest
+
+     steps:
+       - uses: actions/checkout@v2
+       - uses: actions/checkout@v3

@@ -1,0 +1,17 @@
+name: update aws actions
+
+on:
+  push:
+    
+    branches:
+      - foo
+    
+jobs:
+  update_aws_actions:
+     runs-on: ubuntu-latest
+
+     steps:
+       - uses: aws-actions/aws-secretsmanager-get-secrets@v1
+       - uses: aws-actions/configure-aws-credentials@v1
+       - uses: aws-actions/configure-aws-credentials@v2
+       - uses: aws-actions/stale-issue-cleanup@v5
