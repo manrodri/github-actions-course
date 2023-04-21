@@ -12,6 +12,6 @@ jobs:
 
      steps:
        - uses: aws-actions/aws-secretsmanager-get-secrets@v1
-       - uses: aws-actions/configure-aws-credentials@v1
+       - uses: aws-actions/configure-aws-credentials@v2
        - uses: aws-actions/configure-aws-credentials@v2
        - uses: aws-actions/stale-issue-cleanup@v5
